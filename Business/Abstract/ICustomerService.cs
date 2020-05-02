@@ -11,7 +11,7 @@ namespace Business.Abstract
         Customer GetById(int id);
 
         void Add(Customer customer);
-        void Delete(int id);
+        void Delete(Customer customer);
         void Update(Customer customer);
     }
 }

@@ -1,36 +1,44 @@
 ﻿using Business.Abstract;
+using DataAccess.Abstract;
 using Entities.Concrete;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace Business.Concrete
 {
-    class CustomerService : ICustomerService
+    public class CustomerService : ICustomerService
     {
+        private ICustomerDal _customerDal;
+
+        public CustomerService(ICustomerDal customerDal)
+        {
+            _customerDal = customerDal;
+        }
         public void Add(Customer customer)
         {
-            throw new NotImplementedException();
+            _customerDal.Add(customer);
         }
 
-        public void Delete(int id)
+        public void Delete(Customer customer)
         {
-            throw new NotImplementedException();
+            _customerDal.Delete(customer);
         }
 
         public List<Customer> GetAll()
         {
-            throw new NotImplementedException();
+            return _customerDal.GetList().ToList();
         }
 
         public Customer GetById(int id)
         {
-            throw new NotImplementedException();
+            return _customerDal.Get(b => b.Id == id);
         }
 
         public void Update(Customer customer)
         {
-            throw new NotImplementedException();
+            _customerDal.Update(customer);
         }
     }
 }
